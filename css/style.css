@@ -1,0 +1,44 @@
+:root {
+    --safe-top: env(safe-area-inset-top, 47px); /* iPhone 16 dynamic island calc */
+    --safe-bottom: env(safe-area-inset-bottom, 34px);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #0f172a; /* Slate 900 */
+    color: #f8fafc; /* Slate 50 */
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none; /* Prevents pull-to-refresh bounce */
+}
+
+/* Oculta scrollbar para um visual mais limpo */
+::-webkit-scrollbar {
+    display: none;
+}
+
+.set-circle {
+    transition: all 0.2s ease-in-out;
+}
+
+.set-circle.active {
+    background-color: #10b981; /* Emerald 500 */
+    border-color: #10b981;
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Animação suave para as abas */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal classes */
+.modal-overlay {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}

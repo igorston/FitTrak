@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Refatoração completa da arquitetura estática (HTML/CSS/JS separados em arquivos independentes para melhor manutenção).
 - Criação dos arquivos `README.md`, `context.md` e `changelog.md` para documentar a aplicação e manter continuidade.
 - Renomeado `ficha_de_treino_abc.html` para `index.html` para permitir o funcionamento imediato no GitHub Pages.
 - Criação de testes unitários para avaliar a estrutura mínima requerida pelo HTML (`test_html.py`).

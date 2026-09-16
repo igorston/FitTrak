@@ -18,14 +18,20 @@ class TestFitTrakHTML(unittest.TestCase):
 
     def test_has_workout_data(self):
         """Testa se a constante de treino foi definida no JS (edge case de carregamento)"""
-        self.assertIn('const workoutData = {', self.html_content)
-        self.assertIn("'a1'", self.html_content) # Verifica existencia de id
+        data_path = os.path.join(os.path.dirname(__file__), 'js', 'data.js')
+        self.assertTrue(os.path.exists(data_path))
+        with open(data_path, 'r', encoding='utf-8') as f:
+            data_content = f.read()
+        self.assertIn('const workoutData = {', data_content)
+        self.assertIn("'a1'", data_content) # Verifica existencia de id
+
 
     def test_security_cdn(self):
-        """Verifica se estamos carregando libs via https"""
+        """Verifica se estamos carregando libs via https ou caminhos relativos seguros"""
         script_tags = re.findall(r'<script src="(.*?)"></script>', self.html_content)
         for src in script_tags:
-            self.assertTrue(src.startswith('https://'), f"Script não seguro carregado: {src}")
+            is_secure = src.startswith('https://') or not src.startswith('http')
+            self.assertTrue(is_secure, f"Script não seguro carregado: {src}")
 
 if __name__ == '__main__':
     unittest.main()
